@@ -12,14 +12,13 @@ struct Args {
     hello: bool,
 
     /// Show env
-    #[clap(long)]
-    env: bool,
+    #[clap(short, long, default_value = "USER")]
+    env: String,
 
     /// Send get request
     #[clap(long)]
     request: bool,
 }
-
 
 #[tokio::main]
 async fn main() {
@@ -31,16 +30,13 @@ async fn main() {
         println!("Hello, world!");
     }
 
-    if args.env {
-        let key = "MY_ENV_VAR";
-        let val = utils::get_env(key);
-        println!("{} = {}", key, val);
-    }
+    let key = args.env;
+    let val = utils::get_env(&key);
+    println!("{} = {}", key, val);
 
     if args.request {
         let url = "https://google.com";
         let res = request::send_get_request(url).await;
         assert_eq!(res.is_ok(), true);
     }
-
 }
