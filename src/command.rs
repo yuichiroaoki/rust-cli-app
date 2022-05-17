@@ -11,4 +11,3 @@ pub fn hello_world() {
     let hello = String::from_utf8(output.stdout).unwrap();
     println!("{:?}", hello);
 }
-

@@ -1,9 +1,9 @@
 use clap::Parser;
 use dotenv::dotenv;
 
+mod command;
 mod request;
 mod utils;
-mod command;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
@@ -40,6 +40,6 @@ async fn main() {
     if args.request {
         let url = "https://google.com";
         let res = request::send_get_request(url).await;
-        assert_eq!(res.is_ok(), true);
+        assert!(res.is_ok());
     }
 }

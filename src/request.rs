@@ -1,4 +1,3 @@
-
 pub async fn send_get_request(url: &str) -> Result<String, reqwest::Error> {
     let res = reqwest::get(url).await?;
     let body = res.text().await?;
