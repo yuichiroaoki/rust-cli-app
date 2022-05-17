@@ -3,6 +3,7 @@ use dotenv::dotenv;
 
 mod request;
 mod utils;
+mod command;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
@@ -33,6 +34,8 @@ async fn main() {
     let key = args.env;
     let val = utils::get_env(&key);
     println!("{} = {}", key, val);
+
+    command::hello_world();
 
     if args.request {
         let url = "https://google.com";
